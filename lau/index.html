@@ -1,0 +1,7 @@
+<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lịch ca – LẨU GÀ RAU LỖ BÌNH</title></head><body style="margin:0;background:#e7ded3;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif"><p id="t" style="text-align:center;margin-top:42vh;color:#5a3420">Đang tải trang…</p>
+<script>
+function nap(id,q,trang){fetch("https://script.google.com/macros/s/"+id+"/exec",{method:"POST",redirect:"follow",credentials:"omit",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({fn:"giaoDienTinh",args:[q,trang]})})
+.then(function(r){return r.json();}).then(function(x){if(!x.ok)throw new Error(x.error);document.open();document.write(x.result);document.close();})
+.catch(function(e){document.getElementById("t").textContent="Không tải được trang ("+e.message+"). Kiểm tra mạng rồi tải lại.";});}
+nap("AKfycbzVxi6iqrCJ0Hz5yF1yW3gi9H1IIcTBON5srHgTzm9IgnntAZF6S0xpq9dJawEsPyLY","lau","nv");
+</script></body></html>
