@@ -29,17 +29,22 @@ self.addEventListener("push", function (e) {
     return Promise.all(tin.slice(-4).map(function (m) {
       return self.registration.showNotification(m.t || "HMK", {
         body: m.b || "", tag: m.id || undefined, icon: "/chamcong/icon-192.jpg", badge: "/chamcong/icon-192.jpg",
-        data: { u: m.u || "" }
+        data: { u: m.u || "", tab: m.tab || "" }
       });
     }));
   }));
 });
 
+// Bấm thông báo: mở đúng mục (tab) của tin. App đang mở thì chuyển mục ngay, chưa mở thì mở app tại mục đó.
 self.addEventListener("notificationclick", function (e) {
   e.notification.close();
-  var u = (e.notification.data && e.notification.data.u) || self.registration.scope;
+  var d = e.notification.data || {}, sc = self.registration.scope;
+  var url = d.tab ? sc + "?tab=" + encodeURIComponent(d.tab) : (d.u || sc);
   e.waitUntil(self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (ds) {
-    for (var i = 0; i < ds.length; i++) { if ("focus" in ds[i]) { ds[i].focus(); return; } }
-    return self.clients.openWindow(u);
+    for (var i = 0; i < ds.length; i++) {
+      var c = ds[i];
+      if (c.url.indexOf(sc) === 0 && "focus" in c) { if (d.tab) c.postMessage({ hmkTab: d.tab }); return c.focus(); }
+    }
+    return self.clients.openWindow(url);
   }));
 });
