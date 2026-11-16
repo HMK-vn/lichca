@@ -20,6 +20,8 @@ function layTin(x) {
 
 self.addEventListener("push", function (e) {
   e.waitUntil(docIds().then(function (ids) {
+    // Mỗi quán 1 vùng nhận riêng: chỉ hỏi máy chủ của quán ứng với vùng này
+    ids = ids.filter(function (x) { return !x.vung || x.vung === self.registration.scope; });
     return Promise.all(ids.map(layTin));
   }).then(function (ds) {
     var tin = [].concat.apply([], ds);
