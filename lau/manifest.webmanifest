@@ -1,0 +1,23 @@
+{
+  "name": "HMK Nhân viên – Lẩu Gà Rau Lỗ Bình",
+  "short_name": "NV Lẩu",
+  "start_url": "./",
+  "scope": "../",
+  "display": "standalone",
+  "background_color": "#e7ded3",
+  "theme_color": "#e7ded3",
+  "lang": "vi",
+  "icons": [
+    {
+      "src": "/chamcong/icon-192.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/chamcong/icon-192.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "maskable"
+    }
+  ]
+}
